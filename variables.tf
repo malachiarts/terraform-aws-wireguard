@@ -98,3 +98,27 @@ variable "project" {
   description = "Project tag on all AWS resources created"
   type        = string
 }
+
+variable "egress_from_port" {
+  description = "from_port in egress from external Security Group"
+  type        = number
+  default     = 0
+}
+
+variable "egress_to_port" {
+  description = "to_port in egress from external Security Group"
+  type        = number
+  default     = 0
+}
+
+variable "egress_protocol" {
+  description = "Protocol in egress from external Security Group"
+  type        = string
+  default     = "-1"
+}
+
+variable "egress_cidr_blocks" {
+  description = "CIDR blocks in egress from external Security Group"
+  type        = list(string)
+  default     = ["0.0.0.0/0"]
+}
