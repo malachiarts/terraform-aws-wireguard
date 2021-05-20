@@ -5,7 +5,7 @@ resource "aws_security_group" "sg_wireguard_external" {
 
   tags = {
     Name       = "wireguard-${var.env}-external"
-    Project    = "wireguard"
+    project    = var.project
     tf-managed = "True"
     env        = var.env
   }
@@ -18,10 +18,10 @@ resource "aws_security_group" "sg_wireguard_external" {
   }
 
   egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
+    from_port   = var.egress_from_port
+    to_port     = var.egress_to_port
+    protocol    = var.egress_protocol
+    cidr_blocks = var.egress_cidr_blocks
   }
 }
 
@@ -32,7 +32,7 @@ resource "aws_security_group" "sg_wireguard_admin" {
 
   tags = {
     Name       = "wireguard-${var.env}-admin"
-    Project    = "vpn"
+    project    = var.project
     tf-managed = "True"
     env        = var.env
   }
